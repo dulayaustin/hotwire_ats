@@ -38,9 +38,8 @@ http.createServer((req, res) => {
   );
 }).listen(8082);
 
-let result = await esbuild.build({
+let result = await esbuild.context({
   ...config,
-  incremental: true,
   banner: {
     js: ' (() => new EventSource("http://localhost:8082").onmessage = () => location.reload())();',
   },
