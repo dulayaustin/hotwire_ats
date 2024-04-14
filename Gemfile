@@ -65,3 +65,5 @@ end
 
 
 gem "stimulus_reflex", "= 3.5.0.rc4"
+
+gem "devise", "~> 4.9"
