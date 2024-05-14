@@ -14,7 +14,7 @@ class JobsController < ApplicationController
   end
 
   def edit
-    html = render_to_string(partial: 'jobs/form', locals: {job: @job} )
+    html = render_to_string(partial: 'jobs/form', locals: { job: @job } )
     render cable_ready: cable_car
       .inner_html('#slideover-content', html: html)
       .text_content('#slideover-header', text: 'Edit job')
@@ -25,12 +25,12 @@ class JobsController < ApplicationController
     @job.account = current_user.account
 
     if @job.save
-      html = render_to_string(partial: 'jobs/job', locals: {job: @job} )
+      html = render_to_string(partial: 'jobs/job', locals: { job: @job } )
       render cable_ready: cable_car
         .prepend('#jobs', html: html)
         .dispatch_event(name: 'submit:success')
     else
-      html = render_to_string(partial: 'jobs/form', locals: {job: @job} )
+      html = render_to_string(partial: 'jobs/form', locals: { job: @job } )
       render cable_ready: cable_car
         .inner_html('#job-form', html: html), status: :unprocessable_entity
     end
@@ -38,12 +38,12 @@ class JobsController < ApplicationController
 
   def update
     if @job.update(job_params)
-      html = render_to_string(partial: 'jobs/job', locals: {job: @job} )
+      html = render_to_string(partial: 'jobs/job', locals: { job: @job } )
       render cable_ready: cable_car
         .replace(dom_id(@job), html: html)
         .dispatch_event(name: 'submit:success')
     else
-      html = render_to_string(partial: 'jobs/form', locals: {job: @job} )
+      html = render_to_string(partial: 'jobs/form', locals: { job: @job } )
       render cable_ready: cable_car
         .inner_html('#job-form', html: html), status: :unprocessable_entity
     end

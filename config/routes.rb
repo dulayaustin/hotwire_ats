@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   end
 
   resources :jobs
+  resources :applicants
 end

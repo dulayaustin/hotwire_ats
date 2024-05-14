@@ -18,9 +18,7 @@
 
   <div class="form-group">
     <%= form.label :title %>
-    <div class="mt-1">
-      <%= form.text_field :title %>
-    </div>
+    <%= form.text_field :title, class: "mt-1" %>
   </div>
 
   <div class="form-group">
@@ -39,9 +37,7 @@
 
   <div class="form-group">
     <%= form.label :location %>
-    <div class="mt-1">
-      <%= form.text_field :location %>
-    </div>
+    <%= form.text_field :location, class: "mt-1" %>
   </div>
 
   <%= form.submit 'Submit', class: "btn-primary float-right" %>
