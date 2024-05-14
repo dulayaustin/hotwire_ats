@@ -28,5 +28,9 @@ Rails.application.routes.draw do
   end
 
   resources :jobs
-  resources :applicants
+  resources :applicants do
+    member do
+      patch :change_stage
+    end
+  end
 end

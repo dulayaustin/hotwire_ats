@@ -1,6 +1,6 @@
 class ApplicantsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_applicant, only: %i[ edit update destroy ]
+  before_action :set_applicant, only: %i[ edit update destroy change_stage ]
 
   def index
     @applicants = Applicant.all
@@ -51,6 +51,11 @@ class ApplicantsController < ApplicationController
   def destroy
     @applicant.destroy!
     render cable_ready: cable_car.remove(selector: dom_id(@applicant))
+  end
+
+  def change_stage
+    @applicant.update(applicant_params)
+    head :ok
   end
 
   private
