@@ -1,9 +1,26 @@
 class ApplicantsController < ApplicationController
+  include Filterable
+
   before_action :authenticate_user!
   before_action :set_applicant, only: %i[ edit update destroy change_stage ]
 
   def index
-    @applicants = Applicant.all
+    # @applicants = Applicant.all
+
+    # if search_params.present?
+    #   @applicants = Applicant.includes(:job)
+    #   @applicants = @applicants.where(job_id: search_params[:job]) if search_params[:job].present?
+    #   # @applicants = @applicants.where("first_name ILIKE ? OR last_name ILIKE ?", "%#{search_params[:query]}%", "%#{search_params[:query]}%") if search_params[:query].present?
+    #   @applicants = @applicants.text_search(search_params[:query]) if search_params[:query].present?
+    #   if search_params[:sort].present?
+    #     sort = search_params[:sort].split('-')
+    #     @applicants = @applicants.order("#{sort[0]} #{sort[1]}")
+    #   end
+    # else
+    #   @applicants = Applicant.includes(:job).all
+    # end
+
+    @applicants = filter!(Applicant).for_account(current_user.account_id)
   end
 
   def new
@@ -66,4 +83,8 @@ class ApplicantsController < ApplicationController
     def applicant_params
       params.require(:applicant).permit(:first_name, :last_name, :email, :phone, :stage, :status, :job_id, :resume)
     end
+
+    # def search_params
+    #   params.permit(:query, :job, :sort)
+    # end
 end
