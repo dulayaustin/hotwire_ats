@@ -13,4 +13,8 @@ module ApplicationHelper
       'bg-blue-900 border-blue-900'
     end
   end
+
+  def fetch_filter_key(resource, user_id, key)
+    Kredis.hash("#{resource}_filters:#{user_id}")[key]
+  end
 end
