@@ -2,7 +2,10 @@
   url: applicants_path,
   method: :get,
   class: "flex items-baseline",
-  data: { turbo_frame: "applicants" }
+  data: {
+    turbo_frame: "applicants",
+    turbo_action: "advance"
+    }
   ) do |form| %>
   <div class="form-group mr-2">
     <%= form.label :sort, class: "sr-only" %>
