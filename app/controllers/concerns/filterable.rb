@@ -4,14 +4,21 @@ module Filterable
     apply_filters(resource)
   end
 
-  def store_filters(resource)
-    session["#{resource.to_s.underscore}_filters"] = {} unless session.key("#{resource.to_s.underscore}_filters")
+  private
 
-    session["#{resource.to_s.underscore}_filters"].merge!(filter_params_for(resource))
+  def filter_key(resource)
+    "#{resource.to_s.underscore}_filters:#{current_user.id}"
+  end
+
+  def store_filters(resource)
+    key = filter_key(resource)
+    stored_filters = Kredis.hash(key)
+    stored_filters.update(**filter_params_for(resource))
   end
 
   def apply_filters(resource)
-    resource.filter(session["#{resource.to_s.underscore}_filters"])
+    key = filter_key(resource)
+    resource.filter(Kredis.hash(key))
   end
 
   def filter_params_for(resource)
