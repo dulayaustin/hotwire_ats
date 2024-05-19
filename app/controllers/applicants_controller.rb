@@ -2,10 +2,14 @@ class ApplicantsController < ApplicationController
   include Filterable
 
   before_action :authenticate_user!
-  before_action :set_applicant, only: %i[ edit update destroy change_stage ]
+  before_action :set_applicant, only: %i[ show edit update destroy change_stage ]
 
   def index
     @grouped_applicants = filter!(Applicant).for_account(current_user.account_id).group_by(&:stage)
+  end
+
+  def show
+    @job = @applicant.job
   end
 
   def new

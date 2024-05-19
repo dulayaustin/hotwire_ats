@@ -32,5 +32,7 @@ Rails.application.routes.draw do
     member do
       patch :change_stage
     end
+
+    get :resume, action: :show, controller: "resumes"
   end
 end
