@@ -3,7 +3,7 @@
     <%= @applicant.name %>
   </h2>
   <%= link_to "Send email",
-    "#",
+    new_applicant_email_path(@applicant),
     class: "btn-primary-outline",
     data: {
       action: "click->slideover#open",

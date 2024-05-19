@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     member do
       patch :change_stage
     end
-
+    resources :emails, only: %i[ index new create show ]
     get :resume, action: :show, controller: "resumes"
   end
 end
