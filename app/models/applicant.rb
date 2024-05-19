@@ -35,6 +35,7 @@ class Applicant < ApplicationRecord
   scope :for_account, ->(account_id) { where(jobs: { account_id: account_id }) }
 
   def self.apply_sort(selection)
+    return if selection.blank?
     sort, direction = selection.split('-')
     order("applicants.#{sort} #{direction}")
   end

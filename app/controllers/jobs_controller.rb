@@ -1,9 +1,11 @@
 class JobsController < ApplicationController
+  include Filterable
+
   before_action :authenticate_user!
   before_action :set_job, only: %i[ edit update destroy ]
 
   def index
-    @jobs = Job.all
+    @jobs = filter!(Job).for_account(current_user.account_id)
   end
 
   def new
