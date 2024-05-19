@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  get "dashboard/show"
+
   devise_for :users,
     path: '',
     controllers: {
@@ -12,7 +16,7 @@ Rails.application.routes.draw do
       sign_up: 'sign_up',
       sign_out: 'signout'
     }
-  get "dashboard/show"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

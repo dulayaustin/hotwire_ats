@@ -61,8 +61,9 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-end
 
+  gem 'letter_opener_web', '~> 3.0'
+end
 
 gem "stimulus_reflex", "= 3.5.0.rc4"
 
