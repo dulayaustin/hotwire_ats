@@ -12,7 +12,7 @@ class ApplicantsController < ApplicationController
     html = render_to_string(partial: 'applicants/form', locals: { applicant: Applicant.new } )
     render cable_ready: cable_car
       .inner_html('#slideover-content', html: html)
-      .text_content('#slidover-header', text: 'Add an applicant')
+      .text_content('#slideover-header', text: 'Add an applicant')
   end
 
   def create
@@ -34,7 +34,7 @@ class ApplicantsController < ApplicationController
     html = render_to_string(partial: 'applicants/form', locals: { applicant: @applicant } )
     render cable_ready: cable_car
       .inner_html('#slideover-content', html: html)
-      .text_content('#slidover-header', text: 'Update an applicant')
+      .text_content('#slideover-header', text: 'Update an applicant')
   end
 
   def update
