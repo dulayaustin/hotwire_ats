@@ -13,6 +13,7 @@ class Email < ApplicationRecord
 
   after_create_commit :send_email, if: :outbound?
   after_create_commit :broadcast_to_applicant
+  after_create_commit :create_notification, if: :inbound?
 
   def send_email
     ApplicantMailer.contact(email: self).deliver_later
@@ -42,6 +43,16 @@ class Email < ApplicationRecord
       locals: {
         email: self,
         applicant: applicant
+      }
+    )
+  end
+
+  def create_notification
+    InboundEmailNotification.create(
+      user: user,
+      params: {
+        applicant: applicant,
+        email: self
       }
     )
   end
