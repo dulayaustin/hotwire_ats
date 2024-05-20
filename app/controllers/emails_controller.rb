@@ -4,7 +4,7 @@ class EmailsController < ApplicationController
   before_action :set_email, only: %i[ show ]
 
   def index
-    @emails = Email.where(applicant_id: @applicant.id).with_rich_text_body.order(created_at: :asc)
+    @emails = Email.where(applicant_id: @applicant.id).with_rich_text_body.order(created_at: :desc)
   end
 
   def show
