@@ -33,10 +33,11 @@ Rails.application.routes.draw do
 
   resources :jobs
   resources :applicants do
+    get :resume, action: :show, controller: "resumes"
     member do
       patch :change_stage
     end
     resources :emails, only: %i[ index new create show ]
-    get :resume, action: :show, controller: "resumes"
+    resources :email_replies, only: %i[ new ]
   end
 end
