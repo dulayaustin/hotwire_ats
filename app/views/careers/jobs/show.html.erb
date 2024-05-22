@@ -7,7 +7,7 @@
       <div class="flex justify-between items-baseline">
         <h1 class="text-3xl font-bold pb-2 flex-1"><%= @job.title %></h1>
         <%= button_to "Apply",
-          "#",
+          new_careers_job_applicant_path(@job),
           class: "btn-primary-outline disabled:opacity-75 disabled:hover:cursor-not-allowed",
           id: 'apply-button',
           remote: true,
