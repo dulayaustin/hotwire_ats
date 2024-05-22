@@ -65,7 +65,7 @@ group :development do
   gem 'letter_opener_web', '~> 3.0'
 end
 
-gem "stimulus_reflex", "= 3.5.0.rc4"
+gem 'stimulus_reflex', '~> 3.5', '>= 3.5.1'
 
 gem "devise", "~> 4.9"
 

@@ -327,10 +327,10 @@ browserslist@^4.23.0:
     node-releases "^2.0.14"
     update-browserslist-db "^1.0.13"
 
-cable_ready@^5.0.0:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-5.0.3.tgz#99e621005246d846b4ee5fb34cbfb773c88a019a"
-  integrity sha512-0WcXRSwNw6p4SQmcAPk/APkqgfN3MlLCg6N6SUV+xJECWcdPPRIF8bQ7CLZBrch7Q8Fv7NZiokJpQShuSv+yNw==
+cable_ready@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-5.0.5.tgz#45dd12ae5b3c5c53a1b42c10785e79ff87a5be22"
+  integrity sha512-qPC6zaI8h59BzMH3MxtpuMC+H33VJTA2eVddL6fZSWz01jJ2Y3okld01oYWQoKwE2yle/tvHbyuhoKxD4mhEuw==
   dependencies:
     morphdom "2.6.1"
 
@@ -872,14 +872,14 @@ spark-md5@^3.0.1:
   resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
   integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
 
-stimulus_reflex@3.5.0-rc4:
-  version "3.5.0-rc4"
-  resolved "https://registry.yarnpkg.com/stimulus_reflex/-/stimulus_reflex-3.5.0-rc4.tgz#fb5135a810b8f5fd3c3bcb7e13c29b1f5ea81316"
-  integrity sha512-Oh+ywKP/HvCOHXvsSKqWqKcFENA+SYt8krDG/Z+2jQG0VJZ1UxLe6oEdSXCdkbjj6lDZ4BPiytPm39kQvcDqNA==
+stimulus_reflex@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/stimulus_reflex/-/stimulus_reflex-3.5.1.tgz#fb9c548667e01b8dc7141187c73abfe1aa25472a"
+  integrity sha512-Bwsuerfh8ca6kp7MKlUgzYAmeflqoBzSpb25M4i+h3FsmAfPl4rUNN6T8v1d6JPqAPAVQRUL/wtDHumLtpETFw==
   dependencies:
     "@hotwired/stimulus" "^3"
     "@rails/actioncable" "^6 || ^7"
-    cable_ready "^5.0.0"
+    cable_ready "^5.0.5"
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
   name string-width-cjs
