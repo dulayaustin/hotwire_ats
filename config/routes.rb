@@ -31,6 +31,12 @@ Rails.application.routes.draw do
     root to: "devise/sessions#new"
   end
 
+  namespace :careers do
+    resources :accounts, only: %i[ show ] do
+      resources :jobs, only: %i[ index show ], shallow: true
+    end
+  end
+
   resources :jobs
   resources :applicants do
     get :resume, action: :show, controller: "resumes"
