@@ -23,9 +23,7 @@ class ApplicantsController < ApplicationController
     @applicant = Applicant.new(applicant_params)
 
     if @applicant.save
-      html = render_to_string(partial: 'applicants/card', locals: { applicant: @applicant } )
       render cable_ready: cable_car
-        .prepend("#applicants-#{@applicant.stage}", html: html)
         .dispatch_event(name: 'submit:success')
     else
       html = render_to_string(partial: 'applicants/form', locals: { applicant: @applicant } )
