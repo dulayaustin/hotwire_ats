@@ -3,14 +3,6 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-import applicationController from "./application_controller"
-import StimulusReflex from "stimulus_reflex"
-
-StimulusReflex.initialize(application, { applicationController, isolate: true })
-
-// consider removing these options in production
-StimulusReflex.debug = true
-// end remove
 
 import AlertController from "./alert_controller"
 application.register("alert", AlertController)
