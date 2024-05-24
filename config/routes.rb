@@ -49,4 +49,5 @@ Rails.application.routes.draw do
     resources :email_replies, only: %i[ new ]
   end
   resources :notifications, only: %i[ index ]
+  resources :users
 end
