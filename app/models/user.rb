@@ -14,16 +14,11 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :account
 
   after_create_commit :generate_alias
-  # after_create_commit :send_invite_email, if: :invite_token?
 
   def generate_alias
     email_alias = "#{email.split('@')[0]}-#{id[0...4]}"
     update_column(:email_alias, email_alias)
   end
-
-  # def send_invite_email
-  #   UserInviteMailer.invite(self).deliver_later
-  # end
 
   def reset_invite!(inviting_user)
     update(invited_at: Time.current, invited_by: inviting_user)
