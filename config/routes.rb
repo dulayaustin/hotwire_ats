@@ -50,4 +50,6 @@ Rails.application.routes.draw do
   end
   resources :notifications, only: %i[ index ]
   resources :users
+  resources :invites, only: %i[ create update ]
+  get :invite, action: :new, controller: "invites", as: :accept_invite
 end

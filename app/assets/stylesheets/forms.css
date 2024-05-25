@@ -30,3 +30,6 @@
 .form-group input[type=file]::file-selector-button {
   @apply btn bg-white border border-blue-500 text-blue-700 hover:bg-blue-700 hover:text-white focus:ring-blue-700 outline-none text-sm shadow-none;
 }
+.form-group input:disabled, .form-group select:disabled {
+  @apply disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none;
+}
