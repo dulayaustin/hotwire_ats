@@ -19,6 +19,9 @@ application.register("drag", DragController)
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
 import FormController from "./form_controller"
 application.register("form", FormController)
 
