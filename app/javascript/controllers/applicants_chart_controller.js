@@ -14,6 +14,14 @@ export default class extends ApplicationController {
     this.chart.render();
   }
 
+  update(event) {
+    this.stimulate('ApplicantsChart#update', event.target, { serializeForm: true })
+  }
+
+  afterUpdate() {
+    this.chart.updateOptions(this.chartOptions)
+  }
+
   get chartOptions() {
     return {
       chart: {
