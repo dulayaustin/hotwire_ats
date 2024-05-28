@@ -3,10 +3,10 @@
 class ApplicantsChartReflex < ApplicationReflex
   def update
     data = retrieve_data(current_user.account_id, params)
-    categories, series = assign_data(data)
+    labels, series = assign_data(data)
 
     cable_ready
-      .set_dataset_property(name: 'applicantsChartCategoriesValue', selector: '#applicants-chart-container', value: categories)
+      .set_dataset_property(name: 'applicantsChartLabelsValue', selector: '#applicants-chart-container', value: labels)
       .set_dataset_property(name: 'applicantsChartSeriesValue', selector: '#applicants-chart-container', value: series)
       .broadcast
 

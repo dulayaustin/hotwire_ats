@@ -1,25 +1,8 @@
-import ApplicationController from "./application_controller"
-import ApexCharts from "apexcharts"
+import ChartsController from "./charts_controller";
 
-export default class extends ApplicationController {
-  static targets = [ "chart" ]
-
-  static values = {
-    categories: Array,
-    series: Array
-  }
-
-  initialize() {
-    this.chart = new ApexCharts(this.chartTarget, this.chartOptions);
-    this.chart.render();
-  }
-
+export default class extends ChartsController {
   update(event) {
     this.stimulate('ApplicantsChart#update', event.target, { serializeForm: true })
-  }
-
-  afterUpdate() {
-    this.chart.updateOptions(this.chartOptions)
   }
 
   get chartOptions() {
@@ -33,7 +16,7 @@ export default class extends ApplicationController {
         data: this.seriesValue
       }],
       xaxis: {
-        categories: this.categoriesValue,
+        categories: this.labelsValue,
         type: 'datetime'
       },
       stroke: {
