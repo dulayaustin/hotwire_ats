@@ -18,4 +18,8 @@ export default class extends ApplicationController {
   afterUpdate() {
     this.chart.updateOptions(this.chartOptions)
   }
+
+  disconnect() {
+    this.chart.destroy();
+  }
 }
