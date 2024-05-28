@@ -5,7 +5,7 @@ export default class extends ApplicationController {
   static targets = [ "chart" ]
 
   static values = {
-    categories: Array,
+    labels: Array,
     series: Array
   }
 
@@ -33,7 +33,7 @@ export default class extends ApplicationController {
         data: this.seriesValue
       }],
       xaxis: {
-        categories: this.categoriesValue,
+        categories: this.labelsValue,
         type: 'datetime'
       },
       stroke: {

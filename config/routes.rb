@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   get "dashboard/show"
+  get 'charts/show', as: :chart
+  get :invite, action: :new, controller: "invites", as: :accept_invite
 
   devise_for :users,
     path: '',
@@ -51,5 +53,4 @@ Rails.application.routes.draw do
   resources :notifications, only: %i[ index ]
   resources :users
   resources :invites, only: %i[ create update ]
-  get :invite, action: :new, controller: "invites", as: :accept_invite
 end
