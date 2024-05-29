@@ -41,8 +41,12 @@ Rails.application.routes.draw do
     end
   end
 
+  concern :commentable do
+    resources :comments, only: %i[ index create ]
+  end
+
   resources :jobs
-  resources :applicants do
+  resources :applicants, concerns: :commentable do
     get :resume, action: :show, controller: "resumes"
     member do
       patch :change_stage

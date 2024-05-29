@@ -26,6 +26,7 @@ class Applicant < ApplicationRecord
   belongs_to :job
 
   has_many :emails, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy, counter_cache: :commentable_count
 
   validates_presence_of :first_name, :last_name, :email
 

@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :emails, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :invited_users, class_name: 'User', foreign_key: 'invited_by_id', dependent: :nullify, inverse_of: :invited_by
+  has_many :comments, dependent: :destroy
 
   accepts_nested_attributes_for :account
 
