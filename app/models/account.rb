@@ -5,5 +5,5 @@ class Account < ApplicationRecord
 
   has_many :users, dependent: :destroy
   has_many :jobs, dependent: :destroy
-  has_many :applicants, through: :jobs, enable_cable_ready_updates: { on: :create }
+  has_many :applicants, through: :jobs, enable_cable_ready_updates: true
 end
