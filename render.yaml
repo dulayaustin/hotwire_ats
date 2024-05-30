@@ -11,21 +11,6 @@ services:
     maxmemoryPolicy: noeviction
     plan: free
 
-  - type: worker
-    name: hotwire_ats_sidekiq_worker
-    runtime: ruby
-    plan: free
-    buildCommand: bundle install
-    startCommand: bundle exec sidekiq
-    envVars:
-      - key: REDIS_URL
-        fromService:
-          type: redis
-          name: hotwire_ats_redis
-          property: connectionString
-      - key: RAILS_MASTER_KEY
-        sync: false
-
   - type: web
     name: hotwire_ats_app
     runtime: ruby
