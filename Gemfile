@@ -72,3 +72,5 @@ gem "devise", "~> 4.9"
 gem "inline_svg", "~> 1.9"
 
 gem "pg_search", "~> 2.3"
+
+gem "sidekiq", "~> 7.2"
