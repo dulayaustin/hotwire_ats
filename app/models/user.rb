@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include ActionText::Attachable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,6 +16,10 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :account
 
   after_create_commit :generate_alias
+
+  def to_attachable_partial_path
+    'users/mention_attachment'
+  end
 
   def generate_alias
     email_alias = "#{email.split('@')[0]}-#{id[0...4]}"
