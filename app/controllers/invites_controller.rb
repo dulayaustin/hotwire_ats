@@ -23,7 +23,7 @@ class InvitesController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.reset_invite!(current_user)
-    UserInviteMailer.invite(@user).deliver_later
+    UserInviteMailer.invite(@user).deliver_now
     flash_html = render_to_string(partial: 'shared/flash', locals: { level: :success, content: "Resent invite to #{@user.name}" } )
     render cable_ready: cable_car
       .inner_html('#flash-container', html: flash_html)

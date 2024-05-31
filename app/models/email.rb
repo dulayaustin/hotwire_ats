@@ -16,7 +16,7 @@ class Email < ApplicationRecord
   after_create_commit :notify_recipient, if: :inbound?
 
   def send_email
-    ApplicantMailer.contact(email: self).deliver_later
+    ApplicantMailer.contact(email: self).deliver_now
   end
 
   def self.build_reply(email_id)

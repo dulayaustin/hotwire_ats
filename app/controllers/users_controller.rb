@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user.invited_by = current_user
 
     if @user.save
-      UserInviteMailer.invite(@user).deliver_later
+      UserInviteMailer.invite(@user).deliver_now
       html = render_to_string(partial: 'users/user', locals: { user: @user } )
       render cable_ready: cable_car
         .prepend('#users', html: html)
