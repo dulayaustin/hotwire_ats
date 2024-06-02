@@ -76,10 +76,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.smtp_settings = {
-    user_name: 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
-    password: Rails.application.credentials.dig(:sendgrid, :api_key), # This is the secret sendgrid API key which was issued during API key creation
+    user_name: '75e7de001@smtp-brevo.com',
+    password: Rails.application.credentials.dig(:brevo, :api_key),
     domain: 'hotwire-ats-app.onrender.com',
-    address: 'smtp.sendgrid.net',
+    address: 'smtp-relay.brevo.com',
     port: 587,
     authentication: :plain,
     enable_starttls_auto: true
