@@ -31,6 +31,6 @@ class User < ApplicationRecord
   end
 
   def name
-    [first_name, last_name].join(' ').presence || '(Not set)'
+    [first_name, last_name].join(' ').presence || 'Anonymous'
   end
 end

@@ -35,8 +35,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    set_name
-    if @user.update(user_params.except(:name))
+    if @user.update(user_params)
       render(@user)
     else
       render partial: 'edit_form', locals: { user: @user }, status: :unprocessable_entity
@@ -54,13 +53,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def set_name
-      first_name, last_name = user_params.dig(:name).split(' ', 2)
-      @user.first_name = first_name
-      @user.last_name = last_name
-    end
-
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :name)
+      params.require(:user).permit(:first_name, :last_name, :email)
     end
 end
