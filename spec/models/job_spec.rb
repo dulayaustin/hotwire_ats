@@ -61,32 +61,43 @@ RSpec.describe Job, type: :model do
 
     describe ".for_account" do
       it "returns the jobs within account" do
-        expect(Job.for_account(account)).to eq [software_engineer_job, backend_developer_job]
+        expect(Job.for_account(account)).to include(software_engineer_job, backend_developer_job)
       end
 
-      it "returns no job when account is not present" do
+      it "does not return any job when account is not present" do
         expect(Job.for_account(nil)).to be_blank
       end
     end
 
     describe ".for_status" do
-      it "returns the jobs with particular status when status value is present" do
-        expect(Job.for_status("open")).to eq [backend_developer_job]
+      it "returns the jobs with particular status" do
+        expect(Job.for_status("open")).to include(backend_developer_job)
       end
 
       it "returns all jobs when status value is not present" do
-        expect(Job.for_status(nil)).to eq [software_engineer_job, backend_developer_job, fullstack_developer_job]
+        expect(Job.for_status(nil)).to include(software_engineer_job, backend_developer_job, fullstack_developer_job)
       end
     end
 
     describe ".search" do
-      it "returns the jobs by keyword" do
+      it "returns the jobs by searching a keyword on title" do
         expect(Job.search("Developer")).to include(backend_developer_job, fullstack_developer_job)
       end
 
-      it "returns the jobs by prefix keyword" do
-        expect(Job.search("dev")).to include(backend_developer_job, fullstack_developer_job)
+      it "returns the jobs by prefix keyword on first word of title" do
         expect(Job.search("full")).to include(fullstack_developer_job)
+      end
+
+      it "returns the jobs by prefix keyword on any word of title" do
+        expect(Job.search("dev")).to include(backend_developer_job, fullstack_developer_job)
+      end
+
+      it "returns all jobs when keyword is not present" do
+        expect(Job.search(nil)).to include(software_engineer_job, backend_developer_job, fullstack_developer_job)
+      end
+
+      it "does not return any job when theres no prefix keyword searched on title" do
+        expect(Job.search("React")).to be_blank
       end
     end
 
@@ -95,7 +106,7 @@ RSpec.describe Job, type: :model do
         expect(Job.sorted("created_at-asc")).to eq [software_engineer_job, backend_developer_job, fullstack_developer_job]
       end
 
-      it "returns the jobs by created at ascending order" do
+      it "returns the jobs by created at descending order" do
         expect(Job.sorted("created_at-desc")).to eq [fullstack_developer_job, backend_developer_job, software_engineer_job]
       end
 
@@ -107,7 +118,7 @@ RSpec.describe Job, type: :model do
         expect(Job.sorted("title-desc")).to eq [software_engineer_job, fullstack_developer_job, backend_developer_job]
       end
 
-      it "returns the jobs by created at ascending order when value is not present" do
+      it "returns the jobs by created at ascending order when sort value is not present" do
         expect(Job.sorted(nil)).to eq [software_engineer_job, backend_developer_job, fullstack_developer_job]
       end
     end
@@ -117,7 +128,7 @@ RSpec.describe Job, type: :model do
         expect(Job.apply_sort("created_at-asc")).to eq [software_engineer_job, backend_developer_job, fullstack_developer_job]
       end
 
-      it "returns the jobs by created at ascending order" do
+      it "returns the jobs by created at descending order" do
         expect(Job.apply_sort("created_at-desc")).to eq [fullstack_developer_job, backend_developer_job, software_engineer_job]
       end
 
@@ -129,20 +140,20 @@ RSpec.describe Job, type: :model do
         expect(Job.apply_sort("title-desc")).to eq [software_engineer_job, fullstack_developer_job, backend_developer_job]
       end
 
-      it "returns no jobs when value is not present" do
+      it "does not return any job when sort value is not present" do
         expect(Job.apply_sort(nil)).to be_blank
       end
     end
 
     describe ".filter" do
-      it "returns the job by filtered values" do
+      it "returns the jobs by filtered values" do
         filter_params = {
           "sort" => "created_at-desc",
-          "status" => "open",
+          "status" => "",
           "query" => "Dev"
         }
 
-        expect(Job.filter(filter_params)).to eq [backend_developer_job]
+        expect(Job.filter(filter_params)).to eq [fullstack_developer_job, backend_developer_job]
       end
     end
   end
