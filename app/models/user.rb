@@ -21,16 +21,18 @@ class User < ApplicationRecord
     'users/mention_attachment'
   end
 
-  def generate_alias
-    email_alias = "#{email.split('@')[0]}-#{id[0...4]}"
-    update_column(:email_alias, email_alias)
-  end
-
   def reset_invite!(inviting_user)
     update(invited_at: Time.current, invited_by: inviting_user)
   end
 
   def name
     [first_name, last_name].join(' ').presence || 'Anonymous'
+  end
+
+  private
+
+  def generate_alias
+    email_alias = "#{email.split('@')[0]}-#{id[0...4]}"
+    update_column(:email_alias, email_alias)
   end
 end
