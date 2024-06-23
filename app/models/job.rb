@@ -43,8 +43,8 @@ class Job < ApplicationRecord
   end
 
   def self.filter(filters)
-    search(filters['query'])
+    sorted(filters['sort'])
       .for_status(filters['status'])
-      .sorted(filters['sort'])
+      .search(filters['query'])
   end
 end
