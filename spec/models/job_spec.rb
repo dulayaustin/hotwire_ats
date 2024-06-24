@@ -61,7 +61,7 @@ RSpec.describe Job, type: :model do
 
     describe ".for_account" do
       it "returns the jobs within account" do
-        expect(Job.for_account(account)).to include(software_engineer_job, backend_developer_job)
+        expect(Job.for_account(account)).to contain_exactly(software_engineer_job, backend_developer_job)
       end
 
       it "does not return any job when account is not present" do
@@ -71,29 +71,29 @@ RSpec.describe Job, type: :model do
 
     describe ".for_status" do
       it "returns the jobs with particular status" do
-        expect(Job.for_status("open")).to include(backend_developer_job)
+        expect(Job.for_status("open")).to contain_exactly(backend_developer_job)
       end
 
       it "returns all jobs when status value is not present" do
-        expect(Job.for_status(nil)).to include(software_engineer_job, backend_developer_job, fullstack_developer_job)
+        expect(Job.for_status(nil)).to contain_exactly(software_engineer_job, backend_developer_job, fullstack_developer_job)
       end
     end
 
     describe ".search" do
       it "returns the jobs by searching a keyword on title" do
-        expect(Job.search("Developer")).to include(backend_developer_job, fullstack_developer_job)
+        expect(Job.search("Developer")).to contain_exactly(backend_developer_job, fullstack_developer_job)
       end
 
       it "returns the jobs by prefix keyword on first word of title" do
-        expect(Job.search("full")).to include(fullstack_developer_job)
+        expect(Job.search("full")).to contain_exactly(fullstack_developer_job)
       end
 
       it "returns the jobs by prefix keyword on any word of title" do
-        expect(Job.search("dev")).to include(backend_developer_job, fullstack_developer_job)
+        expect(Job.search("dev")).to contain_exactly(backend_developer_job, fullstack_developer_job)
       end
 
       it "returns all jobs when keyword is not present" do
-        expect(Job.search(nil)).to include(software_engineer_job, backend_developer_job, fullstack_developer_job)
+        expect(Job.search(nil)).to contain_exactly(software_engineer_job, backend_developer_job, fullstack_developer_job)
       end
 
       it "does not return any job when theres no prefix keyword searched on title" do

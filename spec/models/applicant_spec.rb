@@ -67,7 +67,7 @@ RSpec.describe Applicant, type: :model do
 
     describe ".for_account" do
       it "returns the applicants within account" do
-        expect(Applicant.includes(:job).for_account(job.account)).to include(john_applicant, elon_applicant)
+        expect(Applicant.includes(:job).for_account(job.account)).to contain_exactly(john_applicant, elon_applicant)
       end
 
       it "does not return any applicant when account is not present" do
@@ -77,29 +77,29 @@ RSpec.describe Applicant, type: :model do
 
     describe ".for_job" do
       it "returns the applicants within job" do
-        expect(Applicant.for_job(other_job)).to include(jane_applicant)
+        expect(Applicant.for_job(other_job)).to contain_exactly(jane_applicant)
       end
 
       it "returns all applicants when job value is not present" do
-        expect(Applicant.for_job(nil)).to include(john_applicant, jane_applicant, elon_applicant)
+        expect(Applicant.for_job(nil)).to contain_exactly(john_applicant, jane_applicant, elon_applicant)
       end
     end
 
     describe ".search" do
       it "returns the applicants by searching a keyword on first name" do
-        expect(Applicant.search("Jane")).to include(jane_applicant)
+        expect(Applicant.search("Jane")).to contain_exactly(jane_applicant)
       end
 
       it "returns the applicants by searching a keyword on last name" do
-        expect(Applicant.search("doe")).to include(john_applicant, jane_applicant)
+        expect(Applicant.search("doe")).to contain_exactly(john_applicant, jane_applicant)
       end
 
       it "returns the applicants by searching a keyword on email" do
-        expect(Applicant.search("elon")).to include(elon_applicant)
+        expect(Applicant.search("elon")).to contain_exactly(elon_applicant)
       end
 
       it "returns all applicants when keyword is not present" do
-        expect(Applicant.search(nil)).to include(john_applicant, jane_applicant, elon_applicant)
+        expect(Applicant.search(nil)).to contain_exactly(john_applicant, jane_applicant, elon_applicant)
       end
 
       it "does not return any applicant when theres no prefix keyword searched on first name, last name and email" do
