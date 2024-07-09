@@ -1,0 +1,17 @@
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    
+AllCops:
+  NewCops: enable
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either 
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation: 
+  Enabled: false
