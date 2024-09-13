@@ -1,17 +1,29 @@
 Metrics/BlockLength:
   Exclude:
-    - 'Rakefile'
-    - '**/*.rake'
-    - 'spec/**/*.rb'
-    
+    - "Rakefile"
+    - "**/*.rake"
+    - "spec/**/*.rb"
+
 AllCops:
   NewCops: enable
 
 Style/HashSyntax:
-  EnforcedShorthandSyntax: either 
+  EnforcedShorthandSyntax: either
 
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/Documentation: 
+Style/Documentation:
   Enabled: false
+
+Style/ArgumentsForwarding:
+  UseAnonymousForwarding: false
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  EnforcedStyle: space
+
+Style/RedundantFetchBlock:
+  Enabled: false
+
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_perl_names
